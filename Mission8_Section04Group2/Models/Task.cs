@@ -1,6 +1,13 @@
-﻿namespace Mission8_Section04Group2.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Mission8_Section04Group2.Models
 {
     public class Task
     {
+        [Key]
+        public int Task {  get; set; }
+        public DateTime? DueDate {  get; set; }
+        [Required]
+        public int Quadrant 
     }
 }
