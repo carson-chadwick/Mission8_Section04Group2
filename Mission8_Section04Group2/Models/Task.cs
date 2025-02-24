@@ -16,5 +16,7 @@ namespace Mission8_Section04Group2.Models
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
+        public 
+
     }
 }
