@@ -7,6 +7,12 @@ namespace Mission8_Section04Group2.Controllers
 {
     public class HomeController : Controller
     {
+        private ManagementDbContext DbContext;
+
+        public HomeController(ManagementDbContext dbContext)
+        {
+            DbContext = dbContext;
+        }
 
         public IActionResult Index()
         {
@@ -19,8 +25,12 @@ namespace Mission8_Section04Group2.Controllers
         }
 
         public IActionResult QuadrantView()
-        {
-            return View();
-        }
-    }
+            {
+                // Use Include to eager load the Category for each Task
+                var tasksWithCategories = DbContext.Tasks
+                                                    .Include(t => t.Categories)  // Assuming Task has a navigation property called Category
+                                                    .ToList();
+                return View(tasksWithCategories); // Pass tasks with included categories to the view
+            }
+
 }
