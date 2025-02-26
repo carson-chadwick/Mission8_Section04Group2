@@ -3,9 +3,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<TaskFormContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("TaskConnection")));
-
+// Register EF Core with SQL Server
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 

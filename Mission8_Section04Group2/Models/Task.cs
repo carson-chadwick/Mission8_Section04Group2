@@ -26,6 +26,5 @@ namespace Mission8_Section04Group2.Models
 
         public bool Completed { get; set; } = false;
 
-
     }
 }
