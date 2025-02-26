@@ -8,7 +8,9 @@ namespace Mission8_Section04Group2.Models
         [Key]
         public int CategoryId { get; set; }
 
+
         [Required]
         public string? CategoryName {  get; set; }
+
     }
 }
