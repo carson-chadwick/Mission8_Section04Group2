@@ -12,11 +12,11 @@ namespace Mission8_Section04Group2.Models
         [Required]
         public int Quadrant {  get; set; }
 
-        [Foreign Key("CategoryId")]
+        [ForeignKey("CategoryId")]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
-        public 
+        public bool Completed { get; set; } = false;
 
     }
 }
