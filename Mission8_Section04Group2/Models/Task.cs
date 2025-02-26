@@ -5,10 +5,13 @@ namespace Mission8_Section04Group2.Models
     public class Task
     {
         [Key]
-        public int Task {  get; set; }
+        public int TaskId { get; set; }
 
-        public DateTime? DueDate {  get; set; }
+        [Required]
+        public string? TaskName { get; set; }
 
+        [DataType(DataType.Date)]
+        public DateTime? DueDate { get; set; }
         [Required]
         public int Quadrant {  get; set; }
 
