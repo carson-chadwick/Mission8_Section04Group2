@@ -36,7 +36,7 @@ namespace Mission8_Section04Group2.Controllers
         public IActionResult EditRecord(Goal updatedInfo)
         {
             DbContext.Update(updatedInfo);
-            DbContext.SaveChanges()
+            DbContext.SaveChanges();
             return RedirectToAction("QuadrantView");
         }
 
