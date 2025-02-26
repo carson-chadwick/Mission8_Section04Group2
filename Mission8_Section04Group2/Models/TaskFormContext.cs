@@ -4,7 +4,7 @@ public class TaskFormContext
 {
 	public TaskFormContext() : DbContext
 	{
-		public TaskFormContext(DbContextOptions<AppDbContext> options) : base(options) { }
+		public TaskFormContext(DbContextOptions<TaskFormContext> options) : base(options) { }
 
     public DbSet<Task> Tasks { get; set; }
     public DbSet<Category> Categories { get; set; }
