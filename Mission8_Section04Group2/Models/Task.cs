@@ -7,7 +7,9 @@ namespace Mission8_Section04Group2.Models
     public class Task
     {
         [Key]
+
         public int TaskId { get; set; }
+
 
         [Required]
         public string? TaskName { get; set; }
@@ -23,6 +25,7 @@ namespace Mission8_Section04Group2.Models
         public Category Category { get; set; }
 
         public bool Completed { get; set; } = false;
+
 
     }
 }
