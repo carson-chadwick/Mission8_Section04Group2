@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Mission8_Section04Group2.Models
 {
-    public class Task
+    public class Goal
     {
         [Key]
 
