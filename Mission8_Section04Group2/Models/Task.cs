@@ -12,6 +12,7 @@ namespace Mission8_Section04Group2.Models
 
         [DataType(DataType.Date)]
         public DateTime? DueDate { get; set; }
+
         [Required]
         public int Quadrant {  get; set; }
 
