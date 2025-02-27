@@ -3,6 +3,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Mission8_Section04Group2.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Mission8_Section04Group2.Controllers
 {
@@ -20,9 +21,68 @@ namespace Mission8_Section04Group2.Controllers
             return View();
         }
 
-        public IActionResult EditRecord()
+        [HttpGet]
+        public IActionResult TaskApplication()
         {
-            return View();
+            ViewBag.Categories = DbContext.Categories
+                .OrderBy(x => x.CategoryName).ToList();
+
+            return View("EditRecord", new Goal());
+        }
+
+        [HttpPost]
+        public IActionResult TaskApplication(Goal response)
+        {
+            if (ModelState.IsValid)
+            {
+                DbContext.Tasks.Add(response); //add record to the database
+                DbContext.SaveChanges();
+                return View("QuadrantView", response);
+            }
+            else
+            {
+                ViewBag.Categories = DbContext.Categories
+                .OrderBy(x => x.CategoryName).ToList();
+
+                return View("EditRecord", response);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var recordToDelete = DbContext.Tasks
+                .Single(x => x.TaskId == id);
+
+            return View(recordToDelete);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Goal application)
+        {
+            DbContext.Tasks.Remove(application);
+            DbContext.SaveChanges();
+
+            return RedirectToAction("QuadrantView");
+        }
+
+        public IActionResult EditRecord(int id)
+        {
+            var recordToEdit = DbContext.Tasks
+                .Single(x => x.TaskId == id);
+
+            ViewBag.Majors = DbContext.Categories
+                .OrderBy(x => x.CategoryName).ToList();
+
+            return View("EditRecord", recordToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult EditRecord(Goal updatedInfo)
+        {
+            DbContext.Update(updatedInfo);
+            DbContext.SaveChanges();
+            return RedirectToAction("QuadrantView");
         }
 
         public IActionResult QuadrantView()
