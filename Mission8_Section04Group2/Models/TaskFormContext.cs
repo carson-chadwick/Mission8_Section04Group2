@@ -7,7 +7,7 @@ public class TaskFormContext : DbContext
 
 	public TaskFormContext(DbContextOptions<TaskFormContext> options) : base(options) { }
 
-    public DbSet<Mission8_Section04Group2.Models.Task> Tasks { get; set; }
+    public DbSet<Mission8_Section04Group2.Models.Goal> Tasks { get; set; }
     public DbSet<Category> Categories { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
