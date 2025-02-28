@@ -1,5 +1,71 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "EditRecord";
+
+    //TODO: figure out why it still thinks category is required
 }
+
+@model Goal
+
+ 
+<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="display-4">Add a Goal</h1>
+    </div>
+
+    <form class="form col-form-label" method="post">
+        <div class="form-group">
+            <input type="hidden" asp-for="TaskId"/>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="TaskName">Task Name</label>
+            <input class="form-control" asp-for="TaskName"/>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="DueDate">Due Date</label>
+            <input class="form-control" asp-for="DueDate"/>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Quadrant">Quadrant</label>
+            <select class="form-control" asp-for="Quadrant">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4" selected>4</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CategoryId">Category:</label>
+             <select class="form-control" asp-for="CategoryId"> 
+                 <option value="">Select a Category</option> 
+                 @foreach (Category c in ViewBag.Categories) 
+                 { 
+                     <option value="@c.CategoryId">@c.CategoryName</option> 
+                 } 
+             </select>
+        </div>
+
+        <div class="form-group"> 
+             <label asp-for="Completed">Completed:</label> 
+             <div> 
+                 <div class="form-check form-check-inline"> 
+                     <input class="form-check-input" type="radio" asp-for="Completed" value="true" id="editedYes" /> 
+                     <label class="form-check-label" for="editedYes">Yes</label> 
+                 </div> 
+                 <div class="form-check form-check-inline"> 
+                     <input class="form-check-input" type="radio" asp-for="Completed" value="false" id="editedNo" /> 
+                     <label class="form-check-label" for="editedNo">No</label> 
+                 </div> 
+             </div> 
+         </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+    </form>
+</div>
+
+

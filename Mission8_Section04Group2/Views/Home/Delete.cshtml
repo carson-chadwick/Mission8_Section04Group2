@@ -1,0 +1,18 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Goal
+<h1>Are you sure you want to delete the goal?</h1>
+
+<h2>Goal to be deleted: @Model.TaskName</h2>
+
+<form asp-controller="Home" asp-action="Delete" method="post">
+
+    <input type="hidden" asp-for="TaskId" />
+
+    <button type="submit">Yes</button>
+    <a class="btn btn-outline-info" asp-controller="Home" asp-action="QuadrantView">No</a>
+
+</form>
