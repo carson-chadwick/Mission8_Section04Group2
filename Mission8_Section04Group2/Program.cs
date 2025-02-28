@@ -8,6 +8,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<TaskFormContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("TaskConnection")));
 
+//This is the additional stuff for the repository
+builder.Services.AddScoped<IGoalRepository, EFGoalRepository>();
+// end 
+
 
 var app = builder.Build();
 

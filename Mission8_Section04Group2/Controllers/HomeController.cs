@@ -8,11 +8,11 @@ namespace Mission8_Section04Group2.Controllers
 {
     public class HomeController : Controller
     {
-        private TaskFormContext DbContext;
+        private IGoalRepository _repo;
 
-        public HomeController(TaskFormContext dbContext)
+        public HomeController(IGoalRepository temp)
         {
-            DbContext = dbContext;
+            _repo = temp;
         }
 
         public IActionResult Index()
@@ -28,11 +28,13 @@ namespace Mission8_Section04Group2.Controllers
         public IActionResult QuadrantView()
         {
             // Use Include to eager load the Category for each Task
-            var tasksWithCategories = DbContext.Tasks
+            var tasksWithCategories = _repo.Tasks //I CHANGED THIS TO _repo instead of DbContext because the variable changed with repository
                                                 .Include(t => t.Category)  // Assuming Task has a navigation property called Category
                                                 .ToList();
             return View(tasksWithCategories); // Pass tasks with included categories to the view
         }
 
+        //To save changes with repo there needs to be another class here. Picture on Madi's phone 
+       
     }
 }
