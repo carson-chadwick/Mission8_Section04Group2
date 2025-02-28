@@ -21,6 +21,51 @@ namespace Mission8_Section04Group2.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult TaskApplication()
+        {
+            ViewBag.Categories = DbContext.Categories
+                .OrderBy(x => x.CategoryName).ToList();
+
+            return View("EditRecord", new Goal());
+        }
+
+        [HttpPost]
+        public IActionResult TaskApplication(Goal response)
+        {
+            if (ModelState.IsValid)
+            {
+                DbContext.Tasks.Add(response); //add record to the database
+                DbContext.SaveChanges();
+                return View("QuadrantView", response);
+            }
+            else
+            {
+                ViewBag.Categories = DbContext.Categories
+                .OrderBy(x => x.CategoryName).ToList();
+
+                return View("EditRecord", response);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var recordToDelete = DbContext.Tasks
+                .Single(x => x.TaskId == id);
+
+            return View(recordToDelete);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Goal application)
+        {
+            DbContext.Tasks.Remove(application);
+            DbContext.SaveChanges();
+
+            return RedirectToAction("QuadrantView");
+        }
+
         public IActionResult EditRecord(int id)
         {
             var recordToEdit = DbContext.Tasks
