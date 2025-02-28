@@ -1,13 +1,15 @@
 using Microsoft.EntityFrameworkCore;
+using Mission8_Section04Group2.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<TaskFormContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("TaskConnection")));
+builder.Services.AddDbContext<GoalFormContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("GoalConnection")));
 
+builder.Services.AddScoped<IGoalRepository, EFGoalRepository>();
 
 var app = builder.Build();
 

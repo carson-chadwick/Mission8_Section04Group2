@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Mission8_Section04Group2.Migrations
 {
-    [DbContext(typeof(TaskFormContext))]
-    partial class TaskFormContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(GoalFormContext))]
+    partial class GoalFormContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -53,9 +53,9 @@ namespace Mission8_Section04Group2.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Mission8_Section04Group2.Models.Task", b =>
+            modelBuilder.Entity("Mission8_Section04Group2.Models.Goal", b =>
                 {
-                    b.Property<int>("TaskId")
+                    b.Property<int>("GoalId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -68,21 +68,21 @@ namespace Mission8_Section04Group2.Migrations
                     b.Property<DateTime?>("DueDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Quadrant")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("TaskName")
+                    b.Property<string>("GoalName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("TaskId");
+                    b.Property<int>("Quadrant")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("GoalId");
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Tasks");
+                    b.ToTable("Goals");
                 });
 
-            modelBuilder.Entity("Mission8_Section04Group2.Models.Task", b =>
+            modelBuilder.Entity("Mission8_Section04Group2.Models.Goal", b =>
                 {
                     b.HasOne("Mission8_Section04Group2.Models.Category", "Category")
                         .WithMany()

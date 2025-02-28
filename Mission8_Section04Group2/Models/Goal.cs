@@ -8,11 +8,11 @@ namespace Mission8_Section04Group2.Models
     {
         [Key]
 
-        public int TaskId { get; set; }
+        public int GoalId { get; set; }
 
 
         [Required]
-        public string? TaskName { get; set; }
+        public string? GoalName { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime? DueDate { get; set; }
@@ -22,7 +22,7 @@ namespace Mission8_Section04Group2.Models
 
         [ForeignKey("CategoryId")]
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
 
         public bool Completed { get; set; } = false;
 

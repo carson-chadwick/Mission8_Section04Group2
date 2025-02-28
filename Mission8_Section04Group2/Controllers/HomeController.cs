@@ -9,11 +9,11 @@ namespace Mission8_Section04Group2.Controllers
 {
     public class HomeController : Controller
     {
-        private TaskFormContext DbContext;
+        private IGoalRepository _repo;
 
-        public HomeController(TaskFormContext dbContext)
+        public HomeController(IGoalRepository temp)
         {
-            DbContext = dbContext;
+            _repo = temp;
         }
 
         public IActionResult Index()
@@ -24,7 +24,7 @@ namespace Mission8_Section04Group2.Controllers
         [HttpGet]
         public IActionResult TaskApplication()
         {
-            ViewBag.Categories = DbContext.Categories
+            ViewBag.Categories = _repo.Categories
                 .OrderBy(x => x.CategoryName).ToList();
 
             return View("EditRecord", new Goal());
@@ -35,24 +35,19 @@ namespace Mission8_Section04Group2.Controllers
         {
             if (ModelState.IsValid)
             {
-                DbContext.Tasks.Add(response); //add record to the database
-                DbContext.SaveChanges();
-                return View("QuadrantView", response);
+                _repo.AddGoal(response);
             }
-            else
-            {
-                ViewBag.Categories = DbContext.Categories
-                .OrderBy(x => x.CategoryName).ToList();
 
-                return View("EditRecord", response);
-            }
+
+            return Redirect("QuadrantView");
+
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var recordToDelete = DbContext.Tasks
-                .Single(x => x.TaskId == id);
+            var recordToDelete = _repo.Goals
+                .Single(x => x.GoalId == id);
 
             return View(recordToDelete);
         }
@@ -60,18 +55,17 @@ namespace Mission8_Section04Group2.Controllers
         [HttpPost]
         public IActionResult Delete(Goal application)
         {
-            DbContext.Tasks.Remove(application);
-            DbContext.SaveChanges();
+            _repo.DeleteGoal(application);
 
             return RedirectToAction("QuadrantView");
         }
 
         public IActionResult EditRecord(int id)
         {
-            var recordToEdit = DbContext.Tasks
-                .Single(x => x.TaskId == id);
+            var recordToEdit = _repo.Goals
+                .Single(x => x.GoalId == id);
 
-            ViewBag.Majors = DbContext.Categories
+            ViewBag.Majors = _repo.Categories
                 .OrderBy(x => x.CategoryName).ToList();
 
             return View("EditRecord", recordToEdit);
@@ -80,18 +74,18 @@ namespace Mission8_Section04Group2.Controllers
         [HttpPost]
         public IActionResult EditRecord(Goal updatedInfo)
         {
-            DbContext.Update(updatedInfo);
-            DbContext.SaveChanges();
+            _repo.UpdateGoal(updatedInfo);
             return RedirectToAction("QuadrantView");
         }
 
         public IActionResult QuadrantView()
         {
-            // Use Include to eager load the Category for each Task
-            var tasksWithCategories = DbContext.Tasks
-                                                .Include(t => t.Category)  // Assuming Task has a navigation property called Category
-                                                .ToList();
-            return View(tasksWithCategories); // Pass tasks with included categories to the view
+            // Use Include to eager load the Category for each Goal
+            var goalsWithCategories = _repo.Goals
+                                            .AsQueryable()
+                                            .Include(t => t.Category)  // Assuming Goal has a navigation property called Category
+                                            .ToList();
+            return View(goalsWithCategories); // Pass goals with included categories to the view
         }
 
     }

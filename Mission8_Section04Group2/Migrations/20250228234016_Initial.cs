@@ -27,12 +27,12 @@ namespace Mission8_Section04Group2.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tasks",
+                name: "Goals",
                 columns: table => new
                 {
-                    TaskId = table.Column<int>(type: "INTEGER", nullable: false)
+                    GoalId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    TaskName = table.Column<string>(type: "TEXT", nullable: false),
+                    GoalName = table.Column<string>(type: "TEXT", nullable: false),
                     DueDate = table.Column<DateTime>(type: "TEXT", nullable: true),
                     Quadrant = table.Column<int>(type: "INTEGER", nullable: false),
                     CategoryId = table.Column<int>(type: "INTEGER", nullable: false),
@@ -40,9 +40,9 @@ namespace Mission8_Section04Group2.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tasks", x => x.TaskId);
+                    table.PrimaryKey("PK_Goals", x => x.GoalId);
                     table.ForeignKey(
-                        name: "FK_Tasks_Categories_CategoryId",
+                        name: "FK_Goals_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "CategoryId",
@@ -61,8 +61,8 @@ namespace Mission8_Section04Group2.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tasks_CategoryId",
-                table: "Tasks",
+                name: "IX_Goals_CategoryId",
+                table: "Goals",
                 column: "CategoryId");
         }
 
@@ -70,7 +70,7 @@ namespace Mission8_Section04Group2.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Tasks");
+                name: "Goals");
 
             migrationBuilder.DropTable(
                 name: "Categories");

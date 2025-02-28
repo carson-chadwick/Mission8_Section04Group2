@@ -2,12 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using Mission8_Section04Group2.Models;
 
-public class TaskFormContext : DbContext
+public class GoalFormContext : DbContext
 {
 
-	public TaskFormContext(DbContextOptions<TaskFormContext> options) : base(options) { }
+	public GoalFormContext(DbContextOptions<GoalFormContext> options) : base(options) { }
 
-    public DbSet<Mission8_Section04Group2.Models.Goal> Tasks { get; set; }
+    public DbSet<Mission8_Section04Group2.Models.Goal> Goals { get; set; }
     public DbSet<Category> Categories { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
