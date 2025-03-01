@@ -30,6 +30,11 @@ namespace Mission8_Section04Group2.Models
             _context.Goals.Remove(goal);
             _context.SaveChanges();
         }
+        public void CompleteStatus(Goal goal)
+        {
+            goal.Completed = true;
+            _context.SaveChanges();
+        }
 
     }
 }

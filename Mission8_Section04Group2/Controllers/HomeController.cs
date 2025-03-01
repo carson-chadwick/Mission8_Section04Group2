@@ -65,7 +65,7 @@ namespace Mission8_Section04Group2.Controllers
             var recordToEdit = _repo.Goals
                 .Single(x => x.GoalId == id);
 
-            ViewBag.Majors = _repo.Categories
+            ViewBag.Categories = _repo.Categories
                 .OrderBy(x => x.CategoryName).ToList();
 
             return View("EditRecord", recordToEdit);
@@ -75,6 +75,15 @@ namespace Mission8_Section04Group2.Controllers
         public IActionResult EditRecord(Goal updatedInfo)
         {
             _repo.UpdateGoal(updatedInfo);
+            return RedirectToAction("QuadrantView");
+        }
+
+        [HttpPost]
+        public IActionResult MarkAsCompleted(int id)
+        {
+            var recordToComplete = _repo.Goals
+                .Single(x => x.GoalId == id);
+            _repo.CompleteStatus(recordToComplete);
             return RedirectToAction("QuadrantView");
         }
 
