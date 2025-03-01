@@ -8,5 +8,6 @@
         public void AddGoal(Goal goal);
         public void UpdateGoal(Goal goal);
         public void DeleteGoal(Goal goal);
+        public void CompleteStatus(Goal goal);
     }
 }

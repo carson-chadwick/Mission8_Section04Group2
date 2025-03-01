@@ -87,6 +87,15 @@ namespace Mission8_Section04Group2.Controllers
                                             .ToList();
             return View(goalsWithCategories); // Pass goals with included categories to the view
         }
+        
+        [HttpPost]
+        public IActionResult MarkAsCompleted(int id)
+        {
+            var recordToComplete = _repo.Goals
+                .Single(x => x.GoalId == id);
+            _repo.CompleteStatus(recordToComplete);
+            return RedirectToAction("QuadrantView");
+        }
 
     }
 }
