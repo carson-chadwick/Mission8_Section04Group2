@@ -6,19 +6,11 @@
 @model Goal
 <h1>Are you sure you want to delete the goal?</h1>
 
-<<<<<<< HEAD
 <h2>Goal to be deleted: @Model.GoalName</h2>
 
 <form asp-controller="Home" asp-action="Delete" method="post">
 
     <input type="hidden" asp-for="GoalId" />
-=======
-<h2>Goal to be deleted: @Model.TaskName</h2>
-
-<form asp-controller="Home" asp-action="Delete" method="post">
-
-    <input type="hidden" asp-for="TaskId" />
->>>>>>> 5e810409f4bc113f99ef3b058550b07c2d0ed57e
 
     <button type="submit">Yes</button>
     <a class="btn btn-outline-info" asp-controller="Home" asp-action="QuadrantView">No</a>
