@@ -32,7 +32,10 @@
                        <h3 class="card-title text-center">@g.GoalName</h3>
                         <p class="mb-1"><strong>Due Date: </strong>@(g.DueDate.HasValue ? g.DueDate.Value.ToString("MMMM d, yyyy") : "No due date")</p>
                         <p class="mb-1"><strong>Category: </strong>@g.Category.CategoryName</p>
-                        <button class="btn btn-primary w-100 mb-2">Mark as Completed</button>
+                        <form asp-controller="Home" asp-action="MarkAsCompleted" method="post">
+                            <input type="hidden" name="id" value="@g.GoalId" />
+                            <button type="submit" class="btn btn-primary w-100 mb-2">Mark as Completed</button>
+                        </form>
                         <div class="row g-1">
                             <div class="col-6">
                                 <a class="btn w-100 btn-secondary" asp-controller="Home" asp-action="EditRecord" asp-route-id="@g.GoalId">Update</a>
@@ -56,7 +59,10 @@
                         <h3 class="card-title text-center">@g.GoalName</h3>
                         <p class="mb-1"><strong>Due Date: </strong>@(g.DueDate.HasValue ? g.DueDate.Value.ToString("MMMM d, yyyy") : "No due date")</p>
                         <p class="mb-1"><strong>Category: </strong>@g.Category.CategoryName</p>
-                        <button class="btn btn-primary w-100 mb-2">Mark as Completed</button>
+                        <form asp-controller="Home" asp-action="MarkAsCompleted" method="post">
+                            <input type="hidden" name="id" value="@g.GoalId" />
+                            <button type="submit" class="btn btn-primary w-100 mb-2">Mark as Completed</button>
+                        </form>
                         <div class="row g-1">
                             <div class="col-6">
                                 <a class="btn w-100 btn-secondary" asp-controller="Home" asp-action="EditRecord" asp-route-id="@g.GoalId">Update</a>
@@ -84,7 +90,10 @@
                         <h3 class="card-title text-center">@g.GoalName</h3>
                         <p class="mb-1"><strong>Due Date: </strong>@(g.DueDate.HasValue ? g.DueDate.Value.ToString("MMMM d, yyyy") : "No due date")</p>
                         <p class="mb-1"><strong>Category: </strong>@g.Category.CategoryName</p>
-                        <button class="btn btn-primary w-100 mb-2">Mark as Completed</button>
+                        <form asp-controller="Home" asp-action="MarkAsCompleted" method="post">
+                            <input type="hidden" name="id" value="@g.GoalId" />
+                            <button type="submit" class="btn btn-primary w-100 mb-2">Mark as Completed</button>
+                        </form>
                         <div class="row g-1">
                             <div class="col-6">
                                 <a class="btn w-100 btn-secondary" asp-controller="Home" asp-action="EditRecord" asp-route-id="@g.GoalId">Update</a>
@@ -108,7 +117,10 @@
                         <h3 class="card-title text-center">@g.GoalName</h3>
                         <p class="mb-1"><strong>Due Date: </strong>@(g.DueDate.HasValue ? g.DueDate.Value.ToString("MMMM d, yyyy") : "No due date")</p>
                         <p class="mb-1"><strong>Category: </strong>@g.Category.CategoryName</p>
-                        <button class="btn btn-primary w-100 mb-2">Mark as Completed</button>
+                        <form asp-controller="Home" asp-action="MarkAsCompleted" method="post">
+                            <input type="hidden" name="id" value="@g.GoalId" />
+                            <button type="submit" class="btn btn-primary w-100 mb-2">Mark as Completed</button>
+                        </form>
                         <div class="row g-1">
                             <div class="col-6">
                                 <a class="btn w-100 btn-secondary" asp-controller="Home" asp-action="EditRecord" asp-route-id="@g.GoalId">Update</a>
