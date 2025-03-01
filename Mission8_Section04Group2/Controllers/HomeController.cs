@@ -65,7 +65,7 @@ namespace Mission8_Section04Group2.Controllers
             var recordToEdit = _repo.Goals
                 .Single(x => x.GoalId == id);
 
-            ViewBag.Majors = _repo.Categories
+            ViewBag.Categories = _repo.Categories
                 .OrderBy(x => x.CategoryName).ToList();
 
             return View("EditRecord", recordToEdit);
